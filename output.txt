@@ -1,0 +1,7 @@
+Node	Distance	Predecessor
+a	0.0		me
+b	7.0		a
+c	6.0		e
+d	10.0		e
+e	8.0		b
+f	8.0		c
