@@ -41,7 +41,7 @@ public class Main {
     
     public static void getNodesFromFile() throws IOException{
         nodes = new ArrayList();
-        for(String s : FileManager.fileToString("nodes.txt"))
+        for(String s : FileManager.fileToString("./input/nodes.txt"))
             if(!s.equals("\n"))
                 nodes.add(s.replace("\n", ""));
 
@@ -50,7 +50,7 @@ public class Main {
     }
     
     public static void getEdgesFromFile() throws IOException{
-        for(String s : FileManager.fileToString("edges.txt")){
+        for(String s : FileManager.fileToString("./input/edges.txt")){
             String[] split = s.split(",");
             
             g.addEdge(split[0], split[1], Integer.parseInt(split[2]));
@@ -113,9 +113,9 @@ public class Main {
         }
         
         try {
-            FileManager.stringToFile(out, "output.txt");
+            FileManager.stringToFile(out, "./output/result.txt");
         } catch (IOException ex) {
-            System.out.println("Error writing to file, try to delete all \"output.txt\" file in this directory!");
+            System.out.println("Error writing to file, create a directory called \"output\" if it doesn't exist!");
             System.exit(0);
         }
     }
