@@ -36,7 +36,12 @@ public class Main {
             System.exit(0);
         }
         
-        bellmanFord(g, startVertex);
+        try {
+            bellmanFord(g, startVertex);
+        } catch (IOException ex) {
+            System.out.println("Error writing to file, create a directory called \"output\" if it doesn't exist!");
+            System.exit(0);
+        }
     }
     
     public static void getNodesFromFile() throws IOException{
@@ -66,7 +71,7 @@ public class Main {
         }
     }
 
-    private static void bellmanFord(Graph g, String startVertex) {
+    private static void bellmanFord(Graph g, String startVertex) throws IOException {
         Map<String, Float> distances = new HashMap<>();
         Map<String, String> predecessors = new HashMap<>();
         
@@ -97,6 +102,7 @@ public class Main {
             while (it.hasNext()) {
                 Edge e = it.next();
                 if(distances.get(e.getStart()) + e.getWeight() < distances.get(e.getEnd())){
+                    FileManager.stringToFile("Graph contains negative-weight circle!", "./output/result.txt");
                     System.out.println("Graph contains negative-weight circle!");
                     return;
                 }
@@ -112,12 +118,7 @@ public class Main {
             System.out.print(nodes.get(i) + "\t" + distances.get(nodes.get(i)) + "\t\t" + predecessors.get(nodes.get(i)) + "\n");
         }
         
-        try {
-            FileManager.stringToFile(out, "./output/result.txt");
-        } catch (IOException ex) {
-            System.out.println("Error writing to file, create a directory called \"output\" if it doesn't exist!");
-            System.exit(0);
-        }
+        FileManager.stringToFile(out, "./output/result.txt");
     }
 
     private static void inizializeNodes() {
