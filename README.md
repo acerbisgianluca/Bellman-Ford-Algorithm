@@ -13,7 +13,7 @@ d
 e
 f
 ```
-In this case the graph is composed by **6 nodes** and **E is the initial node**.
+In this case the graph is composed by **6 nodes** and **A is the initial node**.
 
 The second one contains a list of edges in the graph, but there mustn't be **duplicates**. Example:
 ```
